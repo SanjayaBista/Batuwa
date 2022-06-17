@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Admin Dashboard
+Users
 {% endblock %}
 
 {% block content %}
@@ -93,7 +93,7 @@ Admin Dashboard
                                             </td>
                                             <td>
                                                 <h2 class="table-avatar">
-                                                    <a href="profile.html"><img class="me-2 rounded-circle" src="assets/img/profiles/avatar-01.jpg" alt="User Image">
+                                                    <a href="{% url 'UserAdmin:profiles' %}"><img class="me-2 rounded-circle" src="assets/img/profiles/avatar-01.jpg" alt="User Image">
                                                         George Wells
                                                     </a>
                                                 </h2>

@@ -169,8 +169,8 @@
 							</span>
 						</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="profile.html"><i data-feather="user" class="me-1"></i> Profile</a>
-							<a class="dropdown-item" href="settings.html"><i data-feather="settings" class="me-1"></i> Settings</a>
+							<a class="dropdown-item" href="{% url 'UserAdmin:profiles' %}"><i data-feather="user" class="me-1"></i> Profile</a>
+							<a class="dropdown-item" href="{% url 'UserAdmin:settings' %}"><i data-feather="settings" class="me-1"></i> Settings</a>
 							<a class="dropdown-item" href="login.html"><i data-feather="log-out" class="me-1"></i> Logout</a>
 						</div>
 					</li>
@@ -195,7 +195,7 @@
 								<a href="{% url 'UserAdmin:categories' %}"><i data-feather="copy"></i> <span>Categories</span></a>
 							</li>
 							<li>
-								<a href="projects.html"><i data-feather="database"></i> <span>Projects</span></a>
+								<a href="{% url 'UserAdmin:projects' %}"><i data-feather="database"></i> <span>Projects</span></a>
 							</li>
 							<li>
 								<a href="{% url 'UserAdmin:users' %}"><i data-feather="users"></i> <span>Users</span></a>
@@ -204,25 +204,25 @@
 								<a href="{% url 'UserAdmin:providers' %}"><i data-feather="user-check"></i> <span>Providers</span></a>
 							</li>
 							<li>
-								<a href="reports.html"><i data-feather="pie-chart"></i> <span>Reports</span></a>
+								<a href="{% url 'UserAdmin:reports' %}"><i data-feather="pie-chart"></i> <span>Reports</span></a>
 							</li>
 							<li>
-								<a href="fees.html"><i data-feather="package"></i> <span>Fees</span></a>
+								<a href="{% url 'UserAdmin:fees' %}"><i data-feather="package"></i> <span>Fees</span></a>
 							</li>
 							<li>
-								<a href="taxs.html"><i data-feather="file-text"></i> <span>Taxs</span></a>
+								<a href="{% url 'UserAdmin:taxs' %}"><i data-feather="file-text"></i> <span>Taxs</span></a>
 							</li>
 							<li>
-								<a href="roles.html"><i data-feather="clipboard"></i> <span>Roles</span></a>
+								<a href="{% url 'UserAdmin:roles' %}"><i data-feather="clipboard"></i> <span>Roles</span></a>
 							</li>
 							<li>
-								<a href="skills.html"><i data-feather="award"></i> <span>Skills</span></a>
+								<a href="{% url 'UserAdmin:skills' %}"><i data-feather="award"></i> <span>Skills</span></a>
 							</li>							
 							<li>
-								<a href="verify-identity.html"><i data-feather="user-check"></i> <span>Verify Identity</span></a>
+								<a href="{% url 'UserAdmin:verifyIdentity' %}"><i data-feather="user-check"></i> <span>Verify Identity</span></a>
 							</li>
 							<li>
-								<a href="settings.html"><i data-feather="settings"></i> <span>Settings</span></a>
+								<a href="{% url 'UserAdmin:settings' %}"><i data-feather="settings"></i> <span>Settings</span></a>
 							</li>
 							<li class="menu-title"><span>UI Interface</span></li>
 							<li>
@@ -277,6 +277,9 @@
 		<script src="{% static 'assets2/plugins/datatables/datatables.min.js'%}"></script>
 		
 		<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+		<!-- Datepicker Core JS -->
+		<script src="{% static 'assets2/js/moment.min.js'%}"></script>
+		<script src="{% static 'assets2/js/bootstrap-datetimepicker.min.js'%}"></script>
 
 		<!-- Custom JS -->
 		<script src="{% static 'assets2/js/script.js'%}"></script>
