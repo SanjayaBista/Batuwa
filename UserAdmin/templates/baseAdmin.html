@@ -198,10 +198,10 @@
 								<a href="projects.html"><i data-feather="database"></i> <span>Projects</span></a>
 							</li>
 							<li>
-								<a href="users.html"><i data-feather="users"></i> <span>Users</span></a>
+								<a href="{% url 'UserAdmin:users' %}"><i data-feather="users"></i> <span>Users</span></a>
 							</li>
 							<li>
-								<a href="providers.html"><i data-feather="user-check"></i> <span>Providers</span></a>
+								<a href="{% url 'UserAdmin:providers' %}"><i data-feather="user-check"></i> <span>Providers</span></a>
 							</li>
 							<li>
 								<a href="reports.html"><i data-feather="pie-chart"></i> <span>Reports</span></a>

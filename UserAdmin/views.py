@@ -6,3 +6,9 @@ def dashboard(request):
 
 def categories(request):
     return render(request, 'categories.html')
+
+def users(request):
+    return render(request, 'users.html')
+
+def providers(request):
+    return render(request, 'providers.html')
