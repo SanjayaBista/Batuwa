@@ -8,8 +8,7 @@ class PostProjectForm(forms.ModelForm):
             'title','project','expertise','priceType',
             'startDate','document','links','description'
         )
-    def clean(self):
-        cleaned_data = super(PostProjectForm, self).clean()
+
     
     def __init__(self, *args, **kargs):
         super(PostProjectForm, self).__init__(*args, **kargs)
