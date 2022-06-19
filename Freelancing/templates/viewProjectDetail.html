@@ -1,0 +1,133 @@
+{% extends 'batuwaBase.html'%}
+{% load static %}
+
+{% block title %}
+Project Detail
+{% endblock %}
+
+{% block content %}
+<div class="col-xl-9 col-md-8">
+    <nav class="user-tabs mb-4">
+        <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+            <li class="nav-item">
+                <a class="nav-link active" href="view-project-detail.html">Overview & Discussions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="milestones.html">Milestones</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="tasks.html">Tasks</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="files.html">Files</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="project-payment.html">Payments</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <!-- project list -->
+    <div class="my-projects">
+
+    
+    <!-- project list -->
+    <div class="my-projects-list pro-list-view">
+        <div class="row">
+            <div class="col-lg-10 flex-wrap">
+                <div class="projects-card flex-fill">
+                    <div class="card-body">
+                        <div class="projects-details align-items-center">
+                            <div class="project-info">
+                                <h2>{{project.title }}</h2>
+                                <div class="customer-info">
+                                    <ul class="list-details">
+                                        <li>
+                                            <div class="slot">
+                                                <p>Price type</p>
+                                                <h5>{{project.priceType}}</h5>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="slot">
+                                                <p>Location</p>
+                                                <h5><img src="{% static 'assets/img/en.png'%}" height="13" alt="Lang"> {{project.location}}</h5>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="slot">
+                                                <p>Expiry</p>
+                                                <h5>4 Days Left</h5>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="project-hire-info">
+                                <div class="content-divider"></div>
+                                <div class="projects-amount">
+                                    <h3>$500.00</h3>
+                                    <h5>{{project.duration}}</h5>
+                                </div>
+                                <div class="content-divider"></div>
+                                <div class="projects-action text-center">
+                                    <a href="#" class="hired-detail">Hired on 19 JUN 2021</a>
+                        <div class="pro-status">
+                            <div class="hire-select">
+                                <select class="form-control select">
+                                    <option> Is job completed?  </option>
+                                    <option>Ongoing</option>
+                                    <option>Completed</option>
+                                </select>
+                            </div>
+                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 d-flex flex-wrap">
+                <div class="projects-card flex-fill">
+                    <div class="card-body">
+                        <div class="prj-proposal-count text-center hired">
+                            <img src="{% static 'assets/img/developer/developer-01.jpg'%}" alt="" class="img-fluid"> 
+                            <p class="mb-2">Hannah Finn</p>
+                            <a href="chats.html" class="btn btn-chat">Chat Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /project list -->
+    
+    </div>
+    
+    <div class="pro-post widget-box">								
+        <h3 class="pro-title">Overview</h3>
+        <div class="pro-overview">
+            <h4>{{project.project}}</h4>
+            <p>
+                {{project.description}}
+            </p>
+        </div>	
+    </div>
+    
+    <div class="pro-post widget-box">
+        <h3 class="pro-title">Skills Required</h3>
+        <div class="pro-content">
+            <div class="tags">
+                <span class="badge badge-pill badge-design">Trek</span>
+                <span class="badge badge-pill badge-design">Guide</span>
+                <span class="badge badge-pill badge-design">Camera</span>
+                <span class="badge badge-pill badge-design">Professional</span>
+                <span class="badge badge-pill badge-design">Help</span>
+                <span class="badge badge-pill badge-design">Romantic</span>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<!-- project list -->
+{% endblock %}

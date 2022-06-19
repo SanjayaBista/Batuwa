@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django_countries.fields import CountryField
 from django.contrib.auth.models import User
 # Create your models here.
@@ -6,6 +7,9 @@ from django.contrib.auth.models import User
 
 class Skill(models.Model):
     type = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.type
 
 Gender_CHOICES = (
     ('Male', 'Male'),
@@ -60,19 +64,29 @@ PRICETYPE_CHOICES = (
     ('HALF DAY RATE', 'HALF DAY RATE'),
     ('FULL DAY RATE', 'FULL DAY RATE')
 )
+
+PERIOD_OF_PROJECT = [
+    ('START_IMMEDIATE','SI'),
+    ('JOB_DATE','JD'),
+]
 class ProjectDetail(models.Model):
     title = models.CharField(max_length=30)
-    price = models.ImageField()
-    priceType = models.CharField(max_length=40, choices = PRICETYPE_CHOICES)
+    priceType = models.CharField(max_length=40, choices = PRICETYPE_CHOICES, default="HOURLY RATE")
     location = models.CharField(max_length=30)
     duration = models.CharField(max_length=30)
     addedOn = models.DateTimeField(auto_now_add = True)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True)
+    expertise = models.ManyToManyField(Skill, blank=True)
+    projectPeriod = models.CharField(max_length=250,blank=True,choices=PERIOD_OF_PROJECT)
+    startDate = models.DateField(auto_now_add=False,blank=True,null=True)
+    document = models.FileField(upload_to="verification/", null=True, blank=True)
+    links = models.URLField(null=True, blank=True)
     description = models.TextField()
-    project = models.OneToOneField(Project, on_delete=models.CASCADE, blank=True, null=True)
-
-
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('Freelancing:viewProjectDetail',args=[self.id])
 
 class Review(models.Model):
     title = models.CharField(max_length=40)

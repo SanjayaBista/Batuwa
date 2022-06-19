@@ -1,7 +1,16 @@
+from importlib.util import decode_source
+from multiprocessing import context
+from pydoc import doc
+from this import d
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm  
+from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import View, CreateView
+
+from .forms import PostProjectForm
+
+# from .forms import PostProjectForm  
 from .models import *
 # Create your views here.
 def home(request):
@@ -25,3 +34,41 @@ def userLogin(request):
 
 def userRegister(request):
     return render(request, 'register.html')
+
+def postProject(request):
+    if request.method == 'POST':
+        projectForm = PostProjectForm(request.POST, request.FILES)
+        if projectForm.is_valid():
+            title = projectForm.cleaned_data['title']
+            project = projectForm.cleaned_data['project']
+            priceType = projectForm.cleaned_data['priceType']
+            # expertise = projectForm.cleaned_data['expertise']
+            startDate = projectForm.cleaned_data['startDate']
+            document = projectForm.cleaned_data['document']
+            links = projectForm.cleaned_data['links']
+            description = projectForm.cleaned_data['description']
+            projectAdd = ProjectDetail.objects.create(title=title,project=project,priceType=priceType, startDate=startDate,document=document,links=links,description=description)
+            projectAdd.save()
+            return redirect('Freelancing:viewProject')
+        else:
+            messages.error(request, "Error")
+    else:
+        projectForm = PostProjectForm()
+    return render(request, 'postProject.html',{'projectForm':projectForm })
+
+
+def viewProject(request):
+    allProject = ProjectDetail.objects.all()
+    context = {
+        'allProject':allProject
+    }
+    return render(request, 'projectDetail.html', context)
+
+def viewProjectDetail(request,id):
+    project = ProjectDetail.objects.get(id=id)
+    context = {
+        'project':project
+    }
+    return render(request, 'viewProjectDetail.html', context)
+# class PostProject(CreateView):
+#     pass
