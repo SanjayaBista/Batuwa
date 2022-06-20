@@ -1,20 +1,38 @@
 from django import forms
 from .models import Project, ProjectDetail
+from .widgets import DatePickerInput
 
 class PostProjectForm(forms.ModelForm):
+    period = forms.CharField()
     class Meta:
         model = ProjectDetail
         fields = (
-            'title','project','expertise','priceType',
+            'title','project','priceType','period',
             'startDate','document','links','description'
         )
+        # widgets = {
+        #             'startDate' : DatePickerInput(),
+                    
+        #         }
+    def save(self, *args, **kwargs):
 
-    
+        super().save(commit=False)
+
+        start_type  = self.cleaned_data.pop('period','')
+        print('\n'*10,start_type)
+        if start_type == 'immediate':
+            self.cleaned_data['is_start_immediately'] = True
+        
+        
+        pd = ProjectDetail.objects.create(**self.cleaned_data)
+        self.save_m2m()
+        # super().save(*args, **kwargs)
+
     def __init__(self, *args, **kargs):
         super(PostProjectForm, self).__init__(*args, **kargs)
         self.fields['title'].widget.attrs.update({'class': 'form-control'})
         self.fields['project'].widget.attrs.update({'class': 'form-control'})
-        self.fields['expertise'].widget.attrs.update({'class': 'form-control'})
+        # self.fields['expertise'].widget.attrs.update({'class': 'form-control'})
         self.fields['priceType'].widget.attrs.update({'class': 'form-control'})
         self.fields['startDate'].widget.attrs.update({'class': 'form-control','type': 'date'})
         self.fields['document'].widget.attrs.update({'class': 'form-control'})

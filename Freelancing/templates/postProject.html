@@ -121,13 +121,13 @@ Add New Project
                                 <div class="form-group mb-0" id="pro_period">
                                     <div class="radio">
                                         <label class="custom_radio">
-                                            <input type="radio" value="period" name="period">
+                                            <input type="radio" value="immediate" name="period">
                                             <span class="checkmark"></span>  Start  immediately  after the  candidate is selected
                                         </label>
                                     </div>
                                     <div class="radio">
                                         <label class="custom_radio">
-                                            <input type="radio" value="job" name="period" checked>
+                                            <input type="radio" value="on_start_date" name="period" checked>
                                             <span class="checkmark"></span>  Job will Start On 
                                         </label>
                                     </div>
@@ -207,4 +207,9 @@ Add New Project
     </div>					
 </div>					
 <!-- /Page Content -->
+<script>
+    $(function () {
+      $("#id_startDate").datepicker();
+    });
+  </script>
 {% endblock %}

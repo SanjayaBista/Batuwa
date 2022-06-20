@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from Freelancing.models import ProjectDetail
 # Create your views here.
 def dashboard(request):
     return render(request, 'dashboard.html')
@@ -14,7 +14,13 @@ def providers(request):
     return render(request, 'providers.html')
 
 def projects(request):
-    return render(request, 'projects.html')
+    allProj = ProjectDetail.objects.all()
+    countProj = ProjectDetail.objects.count()
+    context = {
+        'allProj':allProj,
+        'countProj':countProj
+    }
+    return render(request, 'projects.html',context)
 
 def reports(request):
     return render(request, 'reports.html')

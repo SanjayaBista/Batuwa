@@ -39,16 +39,7 @@ def postProject(request):
     if request.method == 'POST':
         projectForm = PostProjectForm(request.POST, request.FILES)
         if projectForm.is_valid():
-            title = projectForm.cleaned_data['title']
-            project = projectForm.cleaned_data['project']
-            priceType = projectForm.cleaned_data['priceType']
-            # expertise = projectForm.cleaned_data['expertise']
-            startDate = projectForm.cleaned_data['startDate']
-            document = projectForm.cleaned_data['document']
-            links = projectForm.cleaned_data['links']
-            description = projectForm.cleaned_data['description']
-            projectAdd = ProjectDetail.objects.create(title=title,project=project,priceType=priceType, startDate=startDate,document=document,links=links,description=description)
-            projectAdd.save()
+            projectForm.save()
             return redirect('Freelancing:viewProject')
         else:
             messages.error(request, "Error")
