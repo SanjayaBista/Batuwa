@@ -86,7 +86,9 @@ class ProjectDetail(models.Model):
     links = models.URLField(null=True, blank=True)
     description = models.TextField()
     price = models.FloatField(null=True, blank=True)
-
+    project_status = models.BooleanField(default=True)
+    technology = models.CharField(max_length=100, blank=True, null=True)
+    company = models.CharField(max_length=100, blank=True, null=True)
     def __str__(self):
         return self.title
     

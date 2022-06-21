@@ -39,6 +39,7 @@ def postProject(request):
     if request.method == 'POST':
         projectForm = PostProjectForm(request.POST, request.FILES)
         if projectForm.is_valid():
+                
             projectForm.save()
             return redirect('Freelancing:viewProject')
         else:
