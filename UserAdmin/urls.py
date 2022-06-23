@@ -20,6 +20,7 @@ urlpatterns = [
     path('verifyIdentity/',views.verifyIdentity, name='verifyIdentity'),
     path('profiles/',views.profiles, name='profiles'),
     path('settings/',views.settings, name='settings'),
+    # path('website/<int:id>/',views.website, name='website'),
     path('localization/',views.localization, name='localization'),
     path('paymentSetting/',views.paymentSetting, name='paymentSetting'),
     path('emailSetting/',views.emailSetting, name='emailSetting'),

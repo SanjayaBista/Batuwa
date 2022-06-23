@@ -64,16 +64,17 @@ Settings
 											<div class="card-header">
 												<h5 class="card-title">Website Basic Details</h5>
 											</div>
-											<form>
+											<form action='' method='POST'>
+												{% csrf_token %}
 												<div class="settings-form">
 													<div class="form-group">
 														<label>Website Name <span class="star-red">*</span></label>
-														<input type="text" class="form-control" placeholder="Enter Website Name">
+														{{ form.website_name }}
 													</div>
 													<div class="form-group">
 														<p class="settings-label">Logo <span class="star-red">*</span></p>
 														<div class="settings-btn">
-															<input type="file" accept="image/*" name="image" id="file"  onchange="loadFile(event)" class="hide-input">
+															{{ form.logo }}
 															<label for="file" class="upload">
 																<i class="feather-upload"></i>
 															</label>
@@ -89,7 +90,7 @@ Settings
 													<div class="form-group">
 														<p class="settings-label">Favicon <span class="star-red">*</span></p>
 														<div class="settings-btn">
-															<input type="file" accept="image/*" name="image" id="file"  onchange="loadFile(event)" class="hide-input">
+															{{ form.favicon }}
 															<label for="file" class="upload">
 																<i class="feather-upload"></i>
 															</label>

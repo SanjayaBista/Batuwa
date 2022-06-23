@@ -2,16 +2,21 @@ from django import forms
 from .models import Project, ProjectDetail
 from .widgets import DatePickerInput
 
+
+# class DateInput(forms.DateInput):
+#     input_type = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}))
+
 class PostProjectForm(forms.ModelForm):
     period = forms.CharField()
+
     class Meta:
         model = ProjectDetail
         fields = (
             'title','project','priceType','period',
-            'startDate','document','links','description'
+            'startDate','document','links','description',
         )
         # widgets = {
-        #             'startDate' : DatePickerInput(),
+        #             'startDate' : DateInput(),
                     
         #         }
     def save(self, *args, **kwargs):
