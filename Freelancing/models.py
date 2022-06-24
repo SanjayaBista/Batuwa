@@ -17,12 +17,12 @@ Gender_CHOICES = (
     ('Female', 'Female'),
   )
 class Customer(models.Model):
-    userName = models.CharField(max_length = 40)
+    user_name = models.CharField(max_length = 40)
     email = models.EmailField()
     gender = models.CharField(max_length=40,choices=Gender_CHOICES)
-    displayName = models.CharField(max_length=40)
+    display_name = models.CharField(max_length=40)
     tagline = models.CharField(max_length=30)
-    contactNumber = models.IntegerField()
+    contact_number = models.IntegerField()
     language = models.CharField(max_length=30)
     image =  models.ImageField(upload_to ='images/')
     description = models.TextField()
@@ -38,10 +38,10 @@ class Address(models.Model):
     zipCode = models.IntegerField()
     country = CountryField()
     address = models.CharField(max_length=50)
-    customerAddress = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True)
+    customer_address = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return self.Address
+        return self.address
 
 
 class SocialLinks(models.Model):
@@ -78,16 +78,16 @@ PROJECT_STATUS = [
 ]
 class ProjectDetail(models.Model):
     title = models.CharField(max_length=100)
-    priceType = models.CharField(max_length=40, choices = PRICETYPE_CHOICES, default="HOURLY RATE")
+    price_type = models.CharField(max_length=40, choices = PRICETYPE_CHOICES, default="HOURLY RATE")
     location = models.CharField(max_length=30)
     duration = models.CharField(max_length=30)
     addedOn = models.DateTimeField(auto_now_add = True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True)
     expertise = models.ManyToManyField(Skill, blank=True)
-    projectPeriod = models.CharField(max_length=250,blank=True,choices=PERIOD_OF_PROJECT)
-    startDate = models.DateField(auto_now_add=False,blank=True,null=True)
+    project_period = models.CharField(max_length=250,blank=True,choices=PERIOD_OF_PROJECT)
+    start_date = models.DateField(auto_now_add=False,blank=True,null=True)
     is_start_immediately = models.BooleanField(default=False)
-    endDate = models.DateField( auto_now=False, auto_now_add=False,blank=True,null=True)
+    end_date = models.DateField( auto_now=False, auto_now_add=False,blank=True,null=True)
     document = models.FileField(upload_to="verification/", null=True, blank=True)
     links = models.URLField(null=True, blank=True)
     description = models.TextField()
@@ -99,20 +99,20 @@ class ProjectDetail(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        return reverse('Freelancing:viewProjectDetail',args=[self.id])
+        return reverse('Freelancing:view_project_detail',args=[self.id])
     
     # @property
     # def project_days(self):
-    #     givenDate = self.addedOn
-    #     dueDate = self.endDate
-    #     expire = givenDate - dueDate
+    #     given_date = self.addedOn
+    #     due_date = self.end_date
+    #     expire = givenDate - due_date
     #     return expire.days
     
     # @property
     # def remaining_days(self):
-    #     todayDate = date.today()
-    #     dueDate = self.endDate
-    #     remaining = dueDate - todayDate
+    #     today_date = date.today()
+    #     due_date = self.end_date
+    #     remaining = due_date - today_date
     #     return remaining.days
 
 class Review(models.Model):
@@ -136,8 +136,8 @@ class Portfolio(models.Model):
     def __str__(self):
         return self.title
 class Verificaion(models.Model):
-    yourName = models.CharField(max_length=30)
-    contactNumber = models.IntegerField()
+    your_name = models.CharField(max_length=30)
+    contact_number = models.IntegerField()
     passport = models.CharField(max_length=30)
     document = models.FileField(upload_to= "verification/")
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE)

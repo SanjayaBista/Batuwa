@@ -6,7 +6,7 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = ProjectDetail
         fields = (
-            'title','price','technology','company','startDate','endDate','project_status', 
+            'title','price','technology','company','start_date','end_date','project_status', 
         )
 
     def __init__(self, *args, **kargs):
@@ -15,8 +15,8 @@ class ProjectForm(forms.ModelForm):
         self.fields['price'].widget.attrs.update({'class': 'form-control'})
         self.fields['technology'].widget.attrs.update({'class': 'form-control'})
         self.fields['company'].widget.attrs.update({'class': 'form-control'})
-        self.fields['startDate'].widget.attrs.update({'class': 'form-control','type': 'date'})
-        self.fields['endDate'].widget.attrs.update({'class': 'form-control'})
+        self.fields['start_date'].widget.attrs.update({'class': 'form-control','type': 'date'})
+        self.fields['end_date'].widget.attrs.update({'class': 'form-control','type': 'date'})
         self.fields['project_status'].widget.attrs.update({'class': 'form-control'})
        
       

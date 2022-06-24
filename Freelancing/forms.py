@@ -12,8 +12,8 @@ class PostProjectForm(forms.ModelForm):
     class Meta:
         model = ProjectDetail
         fields = (
-            'title','project','priceType','period',
-            'startDate','document','links','description',
+            'title','project','price_type','period',
+            'start_date','document','links','description',
         )
         # widgets = {
         #             'startDate' : DateInput(),
@@ -38,8 +38,8 @@ class PostProjectForm(forms.ModelForm):
         self.fields['title'].widget.attrs.update({'class': 'form-control'})
         self.fields['project'].widget.attrs.update({'class': 'form-control'})
         # self.fields['expertise'].widget.attrs.update({'class': 'form-control'})
-        self.fields['priceType'].widget.attrs.update({'class': 'form-control'})
-        self.fields['startDate'].widget.attrs.update({'class': 'form-control','type': 'date'})
+        self.fields['price_type'].widget.attrs.update({'class': 'form-control'})
+        self.fields['start_date'].widget.attrs.update({'class': 'form-control','type': 'date'})
         self.fields['document'].widget.attrs.update({'class': 'form-control'})
         self.fields['links'].widget.attrs.update({'class': 'form-control'})
         self.fields['description'].widget.attrs.update({'class': 'form-control'})

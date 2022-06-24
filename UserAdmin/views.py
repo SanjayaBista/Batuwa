@@ -20,8 +20,8 @@ def providers(request):
     return render(request, 'providers.html')
 
 def projects(request):
-    allProj = ProjectDetail.objects.all()
-    countProj = ProjectDetail.objects.count()
+    all_proj = ProjectDetail.objects.all()
+    count_proj = ProjectDetail.objects.count()
     active_count = ProjectDetail.objects.filter(project_status='Active').count()
     inactive_count = ProjectDetail.objects.filter(project_status = 'Inactive').count()
     trash_count = ProjectDetail.objects.filter(project_status = 'Trash').count()
@@ -29,14 +29,14 @@ def projects(request):
     inactive_project = ProjectDetail.objects.filter(project_status = 'Inactive')
     trash_project = ProjectDetail.objects.filter(project_status = 'Trash')
     context = {
-        'allProj':allProj,
-        'countProj':countProj,
-        'countActive':active_count,
-        'countInactive':inactive_count,
-        'countTrash':trash_count,
-        'activeProj':active_project,
-        'inactiveProj':inactive_project,
-        'trashProj':trash_project,
+        'all_proj':all_proj,
+        'count_proj':count_proj,
+        'count_active':active_count,
+        'count_inactive':inactive_count,
+        'count_trash':trash_count,
+        'active_proj':active_project,
+        'inactive_proj':inactive_project,
+        'trash_proj':trash_project,
 
 
     }
@@ -44,9 +44,9 @@ def projects(request):
 
 def update_project(request,id):
 
-    getProj = ProjectDetail.objects.all()
+    get_proj = ProjectDetail.objects.all()
     context = {
-        'getProj':getProj
+        'get_proj':get_proj
     }
     if request.method == "POST":
         title = request.POST.get('title')
@@ -65,6 +65,7 @@ def update_project(request,id):
         project.end_date = end_date
         project.project_status = project_status
         project.save()
+        print(project)
         return redirect('UserAdmin:projects')
     # project = get_object_or_404(ProjectDetail, pk=pk)
     # form = ProjectForm(instance=project)
@@ -80,10 +81,10 @@ def update_project(request,id):
     return render (request, 'projects.html',context)
 
 def delete_project(request,id):
-    delProj = ProjectDetail.objects.filter(id=id)
-    delProj.delete()
+    del_proj = ProjectDetail.objects.filter(id=id)
+    del_proj.delete()
     context = {
-        'delProj':delProj
+        'del_proj':del_proj
     }
     return redirect('UserAdmin:projects')
 
@@ -100,14 +101,14 @@ def taxs(request):
 def roles(request):
     return render(request, 'roles.html')
 
-def rolesPermission(request):
-    return render(request, 'rolesPermissions.html')
+def roles_permission(request):
+    return render(request, 'roles_permissions.html')
 
 def skills(request):
     return render(request, 'skills.html')
 
-def verifyIdentity(request):
-    return render(request, 'verifyIdentity.html')
+def verify_identity(request):
+    return render(request, 'verify_identity.html')
 
 def profiles(request):
     return render(request, 'profiles.html')
@@ -140,20 +141,20 @@ def settings(request):
 def localization(request):
     return render(request, 'localization.html')
 
-def paymentSetting(request):
-    return render(request, 'paymentSetting.html')
+def payment_setting(request):
+    return render(request, 'payment_setting.html')
 
-def emailSetting(request):
-    return render(request, 'emailSetting.html')
+def email_setting(request):
+    return render(request, 'email_setting.html')
 
-def socialMedia(request):
-    return render(request, 'socialMedia.html')
+def social_media(request):
+    return render(request, 'social_media.html')
 
-def socialLinks(request):
-    return render(request, 'socialLinks.html')
+def social_links(request):
+    return render(request, 'social_links.html')
 
-def seoSettings(request):
-    return render(request, 'seoSettings.html')
+def seo_settings(request):
+    return render(request, 'seo_settings.html')
 
 def others(request):
     return render(request, 'others.html')

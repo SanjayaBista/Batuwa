@@ -1,4 +1,4 @@
-{% extends 'baseAdmin.html '%}
+{% extends 'base_admin.html '%}
 {% load static %}
 
 {% block title %}
@@ -90,7 +90,7 @@ Roles
 														Admin
 													</td>
 													<td class="text-end">
-														<a href="{% url 'UserAdmin:rolesPermission' %}" class="btn btn-sm bg-pink me-2"><i class="fas fa-user-shield"></i></a>
+														<a href="{% url 'UserAdmin:roles_permission' %}" class="btn btn-sm bg-pink me-2"><i class="fas fa-user-shield"></i></a>
 														<a href="javascript:void(0);" class="btn btn-sm btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#edit-category"><i class="far fa-edit"></i></a> 
 														<a href="javascript:void(0);" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete_category"><i class="far fa-trash-alt"></i></a>
 													</td>
@@ -101,7 +101,7 @@ Roles
 													</td>
 													
 													<td class="text-end">
-														<a href="{% url 'UserAdmin:rolesPermission' %}" class="btn btn-sm bg-pink me-2"><i class="fas fa-user-shield"></i></a>
+														<a href="{% url 'UserAdmin:roles_permission' %}" class="btn btn-sm bg-pink me-2"><i class="fas fa-user-shield"></i></a>
 														<a href="javascript:void(0);" class="btn btn-sm btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#edit-category"><i class="far fa-edit"></i></a> 
 														<a href="javascript:void(0);" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete_category"><i class="far fa-trash-alt"></i></a>
 													</td>
@@ -111,7 +111,7 @@ Roles
 														Staff
 													</td>
 													<td class="text-end">
-														<a href="{% url 'UserAdmin:rolesPermission' %}" class="btn btn-sm bg-pink me-2"><i class="fas fa-user-shield"></i></a>
+														<a href="{% url 'UserAdmin:roles_permission' %}" class="btn btn-sm bg-pink me-2"><i class="fas fa-user-shield"></i></a>
 														<a href="javascript:void(0);" class="btn btn-sm btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#edit-category"><i class="far fa-edit"></i></a> 
 														<a href="javascript:void(0);" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete_category"><i class="far fa-trash-alt"></i></a>
 													</td>

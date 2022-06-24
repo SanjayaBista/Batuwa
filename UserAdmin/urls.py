@@ -3,7 +3,7 @@ app_name = 'UserAdmin'
 from .import views
 
 urlpatterns = [
-    path('', views.dashboard, name='dashboardAdmin'),
+    path('', views.dashboard, name='dashboard_admin'),
     path('categories/',views.categories, name='categories'),
     path('users/',views.users, name='users'),
     path('providers/',views.providers, name='providers'),
@@ -15,18 +15,18 @@ urlpatterns = [
     path('fees/',views.fees, name='fees'),
     path('taxs/',views.taxs, name='taxs'),
     path('roles/',views.roles, name='roles'),
-    path('rolesPermission/',views.rolesPermission, name='rolesPermission'),
+    path('roles-permission/',views.roles_permission, name='roles_permission'),
     path('skills/',views.skills, name='skills'),
-    path('verifyIdentity/',views.verifyIdentity, name='verifyIdentity'),
+    path('verify-identity/',views.verify_identity, name='verify_identity'),
     path('profiles/',views.profiles, name='profiles'),
     path('settings/',views.settings, name='settings'),
     # path('website/<int:id>/',views.website, name='website'),
     path('localization/',views.localization, name='localization'),
-    path('paymentSetting/',views.paymentSetting, name='paymentSetting'),
-    path('emailSetting/',views.emailSetting, name='emailSetting'),
-    path('socialMedia/',views.socialMedia, name='socialMedia'),
-    path('socialLinks/',views.socialLinks, name='socialLinks'),
-    path('seoSettings/',views.seoSettings, name='seoSettings'),
+    path('payment-setting/',views.payment_setting, name='payment_setting'),
+    path('email-setting/',views.email_setting, name='email_setting'),
+    path('social-media/',views.social_media, name='social_media'),
+    path('social-links/',views.social_links, name='social_links'),
+    path('seo-settings/',views.seo_settings, name='seo_settings'),
     path('others/',views.others, name='others'),
     
 
