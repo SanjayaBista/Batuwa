@@ -42,7 +42,7 @@
 			
 				<!-- Logo -->
 				<div class="header-left">
-					<a href="{% url 'UserAdmin:dashboardAdmin'%}" class="logo">
+					<a href="{% url 'UserAdmin:dashboard_admin'%}" class="logo">
 						<img src="{% static 'assets2/img/logo.png' %}" alt="Logo">
 					</a>
 					<a href="index.html" class="logo logo-small">
@@ -189,7 +189,7 @@
 						<ul>
 							<li class="menu-title"><span>Main</span></li>
 							<li class="active">
-								<a href="{% url 'UserAdmin:dashboardAdmin' %}"><i data-feather="home"></i> <span>Dashboard</span></a>
+								<a href="{% url 'UserAdmin:dashboard_admin' %}"><i data-feather="home"></i> <span>Dashboard</span></a>
 							</li>
 							<li>
 								<a href="{% url 'UserAdmin:categories' %}"><i data-feather="copy"></i> <span>Categories</span></a>
@@ -219,7 +219,7 @@
 								<a href="{% url 'UserAdmin:skills' %}"><i data-feather="award"></i> <span>Skills</span></a>
 							</li>							
 							<li>
-								<a href="{% url 'UserAdmin:verifyIdentity' %}"><i data-feather="user-check"></i> <span>Verify Identity</span></a>
+								<a href="{% url 'UserAdmin:verify_identity' %}"><i data-feather="user-check"></i> <span>Verify Identity</span></a>
 							</li>
 							<li>
 								<a href="{% url 'UserAdmin:settings' %}"><i data-feather="settings"></i> <span>Settings</span></a>

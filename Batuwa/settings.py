@@ -140,7 +140,8 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
-
+DATE_FORMAT = "Y-m-d"
+USE_L10N = False
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'

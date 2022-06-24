@@ -1,4 +1,4 @@
-{% extends 'baseAdmin.html '%}
+{% extends 'base_admin.html '%}
 {% load static %}
 
 {% block title %}
@@ -76,17 +76,17 @@ Projects
 							<div class="reviews-menu-links">
 								<ul role="tablist" class="nav nav-pills card-header-pills nav-justified">
 									<li class="nav-item">
-										<a href="#tab-4" data-bs-toggle="tab" class="nav-link active">All ({{countProj}})</a>
+										<a href="#tab-4" data-bs-toggle="tab" class="nav-link active">All ({{ count_proj }})</a>
 									</li>
 									<li class="nav-item">
-										<a href="#tab-5" data-bs-toggle="tab" class="nav-link">Active ({{countActive}})</a>
+										<a href="#tab-5" data-bs-toggle="tab" class="nav-link">Active ({{ count_active }})</a>
 									</li>
 									<li class="nav-item">
-										<a href="#tab-6" data-bs-toggle="tab" class="nav-link"> In Active ({{countInactive}})
+										<a href="#tab-6" data-bs-toggle="tab" class="nav-link"> In Active ({{ count_inactive }})
 										</a>
 									</li>
 									<li class="nav-item">
-										<a href="#tab-7" data-bs-toggle="tab" class="nav-link">Trash ({{countTrash}})</a>
+										<a href="#tab-7" data-bs-toggle="tab" class="nav-link">Trash ({{ count_trash }})</a>
 									</li>
 								</ul>
 							</div>
@@ -111,7 +111,7 @@ Projects
 											</thead>
 											<tbody>
 												<tr>
-													{% for proj in allProj %}
+													{% for proj in all_proj %}
 													<td>
 														<div class="form-check form-checkbox">
 														  <input type="checkbox" class="form-check-input" id="customCheck1">
@@ -137,11 +137,11 @@ Projects
 														{{ proj.technology }}
 													</td>
 													<td>{{ proj.company }}</td>
-													<td>{{ proj.startDate }}</td>
-													<td>{{ proj.endDate }}</td>
+													<td>{{ proj.start_date }}</td>
+													<td>{{ proj.end_date }}</td>
 													<td class="text-end">
-														<a href="javascript:void(0);-{{forloop.counter}}" class="btn btn-sm btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#add-category"><i class="far fa-edit"></i></a> 
-														<a href="javascript:void(0);-{{forloop.counter}}" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete_category"><i class="far fa-trash-alt"></i></a>
+														<a href="javascript:void(0);-{{forloop.counter}}" class="btn btn-sm btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#add-category-{{ proj.id }}"><i class="far fa-edit"></i></a> 
+														<a href="javascript:void(0);-{{forloop.counter}}" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete_category-{{ proj.id }}"><i class="far fa-trash-alt"></i></a>
 													</td>
 												</tr>
 												{% endfor %}
@@ -170,7 +170,7 @@ Projects
 												</tr>
 											</thead>
 											<tbody>
-												{% for proj in activeProj%}
+												{% for proj in active_proj %}
 												<tr>
 													<td>
 														<div class="form-check form-checkbox">
@@ -183,9 +183,9 @@ Projects
 															<a href="profile.html"><img class="me-2" src="{% static 'assets/img/company/img-5.png'%}" alt="User Image"></a>
 														</h2>
 													</td>													
-													<td>{{proj.title}}</td>
+													<td>{{ proj.title }}</td>
 													<td>
-														${{proj.price}}
+														${{ proj.price }}
 													</td>
 													<td>
 														<div class="progress rounded-pill">
@@ -193,14 +193,14 @@ Projects
 														</div>
 													</td>
 													<td>
-														{{proj.technology}}
+														{{ proj.technology }}
 													</td>
-													<td>{{proj.company}}</td>
-													<td>{{proj.startDate}}</td>
-													<td>{{proj.endDate}}</td>
+													<td>{{ proj.company }}</td>
+													<td>{{ proj.start_date }}</td>
+													<td>{{ proj.end_date }}</td>
 													<td class="text-end">
-														<a href="javascript:void(0);" class="btn btn-sm btn-secondary me-2"><i class="far fa-edit"></i></a> 
-														<a href="javascript:void(0);" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete_category"><i class="far fa-trash-alt"></i></a>
+														<a href="javascript:void(0);" class="btn btn-sm btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#add-category-{{ proj.id }}"><i class="far fa-edit"></i></a> 
+														<a href="javascript:void(0);" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete_category-{{ proj.id }}"><i class="far fa-trash-alt"></i></a>
 													</td>
 												</tr>
 												{% endfor %}
@@ -226,7 +226,7 @@ Projects
 												</tr>
 											</thead>
 											<tbody>
-												{% for proj in inactiveProj%}
+												{% for proj in inactive_proj %}
 												<tr>
 													<td>
 														<div class="form-check form-checkbox">
@@ -250,14 +250,14 @@ Projects
 														</div>
 													</td>
 													<td>
-														{{proj.technology}}
+														{{ proj.technology }}
 													</td>
-													<td>{{proj.company}}</td>
-													<td>{{ proj.startDate }}</td>
-													<td>{{ proj.endDate }}</td>
+													<td>{{ proj.company }}</td>
+													<td>{{ proj.start_date }}</td>
+													<td>{{ proj.end_date }}</td>
 													<td class="text-end">
-														<a href="javascript:void(0);" class="btn btn-sm btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#add-category"><i class="far fa-edit"></i></a> 
-														<a href="javascript:void(0);" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete_category"><i class="far fa-trash-alt"></i></a>
+														<a href="javascript:void(0);" class="btn btn-sm btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#add-category-{{ proj.id }}"><i class="far fa-edit"></i></a> 
+														<a href="javascript:void(0);" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete_category-{{ proj.id }}"><i class="far fa-trash-alt"></i></a>
 													</td>
 												</tr>
 													{% endfor %}			
@@ -283,7 +283,7 @@ Projects
 												</tr>
 											</thead>
 											<tbody>
-												{% for proj in trashProj%}
+												{% for proj in trash_proj %}
 												<tr>
 													<td>
 														<div class="form-check form-checkbox">
@@ -307,14 +307,14 @@ Projects
 														</div>
 													</td>
 													<td>
-														{{proj.technology}}
+														{{ proj.technology }}
 													</td>
-													<td>{{proj.company}}</td>
-													<td>{{ proj.startDate }}</td>
-													<td>{{ proj.endDate }}</td>
+													<td>{{ proj.company }}</td>
+													<td>{{ proj.start_date }}</td>
+													<td>{{ proj.end_date }}</td>
 													<td class="text-end">
-														<a href="javascript:void(0);" class="btn btn-sm btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#add-category"><i class="far fa-edit"></i></a> 
-														<a href="javascript:void(0);" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete_category"><i class="far fa-trash-alt"></i></a>
+														<a href="javascript:void(0);" class="btn btn-sm btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#add-category-{{ proj.id }}"><i class="far fa-edit"></i></a> 
+														<a href="javascript:void(0);" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete_category-{{ proj.id }}"><i class="far fa-trash-alt"></i></a>
 													</td>
 												</tr>
 													{% endfor %}			
@@ -333,8 +333,8 @@ Projects
 		<!-- /Main Wrapper -->
 		
 		<!-- Category Modal -->
-		{% for proj in allProj %}
-		<div class="modal fade custom-modal" id="add-category">
+		{% for proj in all_proj %}
+		<div class="modal fade custom-modal" id="add-category-{{ proj.id }}">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 
@@ -349,11 +349,11 @@ Projects
 						{% csrf_token %}
 						<div class="form-group">
 							<label>Title</label>
-							<input type="text" class="form-control" name="title" value="{{proj.title}}">
+							<input type="text" class="form-control" name="title" value="{{ proj.title }}">
 						</div>
 						<div class="form-group">
 							<label>Budget</label>
-							<input type="text" class="form-control" name="price" value=" {{proj.price}} ">
+							<input type="text" class="form-control" name="price" value=" {{ proj.price }} ">
 						</div>	
 						<div class="form-group">
 							<label>Technology</label>
@@ -366,13 +366,13 @@ Projects
 						<div class="form-group">
 							<label>From Date</label>
 							<div class="cal-icon">
-								<input class="form-control datetimepicker" name="start_date" type="text"  value="{{ proj.startDate }}">
+								<input class="form-control " name="start_date" type="text"  value="{{ proj.start_date }}">
 							</div>
 						</div>
 						<div class="form-group">
 							<label>To Date</label>
 							<div class="cal-icon">
-								<input class="form-control datetimepicker" name="end_date" type="text"  value="{{ proj.endDate}}">
+								<input class="form-control " name="end_date" type="text"  value="{{ proj.end_date}}">
 							</div>
 						</div>	
 						<div class="form-group">
@@ -412,8 +412,8 @@ Projects
 		<!-- Category Modal -->
 
 		<!-- Delete Modal -->
-		{% for proj in allProj %}
-		<div class="modal custom-modal fade" id="delete_category" role="dialog">
+		{% for proj in all_proj %}
+		<div class="modal custom-modal fade" id="delete_category-{{ proj.id }}" role="dialog">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-body">

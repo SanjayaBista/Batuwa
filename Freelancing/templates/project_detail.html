@@ -1,4 +1,4 @@
-{% extends 'batuwaBase.html'%}
+{% extends 'batuwa_base.html'%}
 {% load static %}
 
 {% block title %}
@@ -13,7 +13,7 @@ All Projects
                 <h3>Manage Projects</h3>
             </div>
             <div class="col-md-6 text-end">
-                <a href="post-project.html" class="btn btn-primary back-btn mb-4">Post a Project</a>
+                <a href="{% url 'Freelancing:post_project' %}" class="btn btn-primary back-btn mb-4">Post a Project</a>
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@ All Projects
     
     <!-- project list -->
     <div class="my-projects-list">
-        {% for project in allProject %}
+        {% for project in all_project %}
         <div class="row">
             <div class="col-lg-10 flex-wrap">
                 <div class="projects-card flex-fill">
@@ -47,18 +47,18 @@ All Projects
                         <div class="projects-details align-items-center">
                             <div class="project-info">
                                 <span>Dreamguystech</span>
-                                <h2>{{project.title }}</h2>
+                                <h2>{{ project.title }}</h2>
                                 <div class="customer-info">
                                     <ul class="list-details">
                                         <li>
                                             <div class="slot">
                                                 <p>Price type</p>
-                                                <h5>{{project.priceType}}</h5>
+                                                <h5>{{ project.price_type }}</h5>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="slot">
-                                                <p>{{project.location}}</p>
+                                                <p>{{ project.location }}</p>
                                                 <h5><img src="{% static 'assets/img/en.png'%}" height="13" alt="Lang"> UK</h5>
                                             </div>
                                         </li>
@@ -74,7 +74,7 @@ All Projects
                             <div class="project-hire-info">
                                 <div class="content-divider"></div>
                                 <div class="projects-amount">
-                                    <h3>${{project.price}}</h3>
+                                    <h3>${{ project.price }}</h3>
                                     <h5>3 Days</h5>
                                 </div>
                                 <div class="content-divider"></div>

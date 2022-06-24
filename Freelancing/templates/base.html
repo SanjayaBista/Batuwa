@@ -70,7 +70,7 @@
 											<li><a href="developer-details.html">Batuwa Details</a></li>
 										</ul>
 									</li>
-									<li><a href="{% url 'Freelancing:viewProject' %}">Dashboard</a></li>	
+									<li><a href="{% url 'Freelancing:view_project' %}">Dashboard</a></li>	
 									<li><a href="manage-projects.html">Tasks</a></li>
 									<li><a href="favourites.html">Favourites</a></li>
 									<li><a href="membership-plans.html">Membership</a></li>
@@ -114,7 +114,7 @@
 								</ul>
 							</li>
 							<li>
-								<a href="{% url 'UserAdmin:dashboardAdmin' %}" target="_blank">Admin</a>
+								<a href="{% url 'UserAdmin:dashboard_admin' %}" target="_blank">Admin</a>
 							</li>
 						</ul>
 					</div>		 
@@ -125,7 +125,7 @@
 						<li><a href="{% url 'Freelancing:register' %}" class="reg-btn"><i class="fas fa-user"></i> Register</a></li>
 						<li><a href="{% url 'Freelancing:login' %}" class="log-btn"><i class="fas fa-lock"></i> Login</a></li>
 						{% endif %}
-						<li><a href="{% url 'Freelancing:postProject' %}" class="login-btn">Post a Task </a></li>
+						<li><a href="{% url 'Freelancing:post_project' %}" class="login-btn">Post a Task </a></li>
 					</ul>
 				</nav>
 			</header>

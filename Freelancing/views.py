@@ -16,7 +16,7 @@ from .models import *
 def home(request):
     return render(request, 'index.html')
 
-def userLogin(request):
+def user_login(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -32,35 +32,35 @@ def userLogin(request):
         return render (request, 'login.html', {})
  
 
-def userRegister(request):
+def user_register(request):
     return render(request, 'register.html')
 
-def postProject(request):
+def post_project(request):
     if request.method == 'POST':
-        projectForm = PostProjectForm(request.POST, request.FILES)
-        if projectForm.is_valid():
+        project_form = PostProjectForm(request.POST, request.FILES)
+        if project_form.is_valid():
                 
-            projectForm.save()
-            return redirect('Freelancing:viewProject')
+            project_form.save()
+            return redirect('Freelancing:view_project')
         else:
             messages.error(request, "Error")
     else:
-        projectForm = PostProjectForm()
-    return render(request, 'postProject.html',{'projectForm':projectForm })
+        project_form = PostProjectForm()
+    return render(request, 'post_project.html',{'project_form':project_form })
 
 
-def viewProject(request):
-    allProject = ProjectDetail.objects.all()
+def view_project(request):
+    all_project = ProjectDetail.objects.all()
     context = {
-        'allProject':allProject
+        'all_project':all_project
     }
-    return render(request, 'projectDetail.html', context)
+    return render(request, 'project_detail.html', context)
 
-def viewProjectDetail(request,id):
+def view_project_detail(request,id):
     project = ProjectDetail.objects.get(id=id)
     context = {
         'project':project
     }
-    return render(request, 'viewProjectDetail.html', context)
+    return render(request, 'view_project_detail.html', context)
 # class PostProject(CreateView):
 #     pass
