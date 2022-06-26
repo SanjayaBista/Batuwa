@@ -1,11 +1,13 @@
 from itertools import count
 from django.db import models 
+from Freelancing.models import Customer
 
 # Create your models here.
 class Website(models.Model):
     website_name = models.CharField(max_length=150)
     logo = models.ImageField(upload_to='websiteLogo',null=True, blank=True)
     favicon = models.ImageField(upload_to='websiteFavicon', blank=True, null=True)
+    user = models.OneToOneField(Customer, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.website_name
@@ -30,6 +32,7 @@ class Address(models.Model):
     zip_code = models.IntegerField()
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True)
     state = models.ForeignKey(State, on_delete=models.SET_NULL, blank=True, null=True)
+    user = models.OneToOneField(Customer, on_delete=models.CASCADE,blank=True, null=True)
 
     def __str__(self):
         return self.city
