@@ -30,18 +30,18 @@ class Customer(models.Model):
     customer = models.OneToOneField(User, on_delete = models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return self.userName
+        return self.user_name
 
 
-class Address(models.Model):
-    state = models.CharField(max_length=20)
-    zipCode = models.IntegerField()
-    country = CountryField()
-    address = models.CharField(max_length=50)
-    customer_address = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True)
+# class Address(models.Model):
+#     state = models.CharField(max_length=20)
+#     zipCode = models.IntegerField()
+#     country = CountryField()
+#     address = models.CharField(max_length=50)
+#     customer_address = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True)
 
-    def __str__(self):
-        return self.address
+#     def __str__(self):
+#         return self.address
 
 
 class SocialLinks(models.Model):
@@ -141,7 +141,7 @@ class Verificaion(models.Model):
     passport = models.CharField(max_length=30)
     document = models.FileField(upload_to= "verification/")
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE)
-    address  = models.ForeignKey(Address, on_delete=models.CASCADE)
+
 
     def __str__(self):
         return self.yourName

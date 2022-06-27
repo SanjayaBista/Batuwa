@@ -64,24 +64,25 @@ Settings
 											<div class="card-header">
 												<h5 class="card-title">Website Basic Details</h5>
 											</div>
-											<form action='' method='POST'>
+											<form action='{% url 'UserAdmin:settings' %}' method='POST'>
 												{% csrf_token %}
 												<div class="settings-form">
 													<div class="form-group">
 														<label>Website Name <span class="star-red">*</span></label>
-														{{ form.website_name }}
+														<input type="text" class="form-control" name='website_name' value="{{ user.customer.website.website_name }}">
+														<input value='website' hidden name='type'>
 													</div>
 													<div class="form-group">
 														<p class="settings-label">Logo <span class="star-red">*</span></p>
 														<div class="settings-btn">
-															{{ form.logo }}
+															<input type="file" accept="image/*" name="logo" id="file"  onchange="loadFile(event)" class="hide-input">
 															<label for="file" class="upload">
 																<i class="feather-upload"></i>
 															</label>
 														</div>
 														<h6 class="settings-size">Recommended image size is <span>150px x 150px</span></h6>
 														<div class="upload-images">
-															<img src="assets/img/logo.png" alt="Image">
+															<img src="{% if user.customer.website.logo %} {{ user.customer.website.logo.url }} {% endif %}" alt="Image">
 															<a href="javascript:void(0);" class="btn-icon logo-hide-btn">
 																<i class="feather-x-circle"></i>
 															</a>
@@ -90,7 +91,7 @@ Settings
 													<div class="form-group">
 														<p class="settings-label">Favicon <span class="star-red">*</span></p>
 														<div class="settings-btn">
-															{{ form.favicon }}
+															<input type="file" accept="image/*" name="favicon" id="file"  onchange="loadFile(event)" class="hide-input">
 															<label for="file" class="upload">
 																<i class="feather-upload"></i>
 															</label>
@@ -100,7 +101,7 @@ Settings
 														</h6>
 														<h6 class="settings-size mt-1">Accepted formats: only png and ico</h6>
 														<div class="upload-images upload-size">
-															<img src="assets/img/favicon.png" alt="Image">
+															<img src="{% if user.customer.website.favicon %} {{ user.customer.website.favicon.url }} {% endif %}" alt="Image">
 															<a href="javascript:void(0);" class="btn-icon logo-hide-btn">
 																<i class="feather-x-circle"></i>
 															</a>
@@ -135,50 +136,50 @@ Settings
 											<div class="card-header">
 												<h5 class="card-title">Address Details</h5>
 											</div>
-											<form>
+											<form action='{% url 'UserAdmin:settings' %}' method='POST'>
+												{% csrf_token %}
 												<div class="settings-form">
 													<div class="form-group">
 														<label>Address Line 1 <span class="star-red">*</span></label>
-														<input type="text" class="form-control" placeholder="Enter Address Line 1">
+														<input type="text" name='address1' class="form-control" value="{{ user.customer.address.address1 }}">
+														<input value='address' hidden name='type'>
 													</div>
 													<div class="form-group">
 														<label>Address Line 2 <span class="star-red">*</span></label>
-														<input type="text" class="form-control" placeholder="Enter Address Line 2">
+														<input type="text" name='address2' class="form-control" value="{{ user.customer.address.address2 }}">
 													</div>
 													<div class="row">
 														<div class="col-md-6">
 															<div class="form-group">
 																<label>City <span class="star-red">*</span></label>
-																<input type="text" class="form-control">
+																<input type="text" name='city' class="form-control" value="{{ user.customer.address.city }}">
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="form-group">
 																<label>State/Province <span class="star-red">*</span></label>
-																<select class="select form-control">
-																	<option selected="selected">Select</option>
-																	<option>California</option>
-																	<option>Tasmania</option>  
-																	<option>Auckland</option>
-																	<option>Marlborough</option>
+															
+																<select name='state' class="select form-control">
+																	{% for i in state_name %}
+																	<option value="{{ i.name }}" {% if user.customer.address.state == i %}selected{% endif %} >{{i}}</option>
+																	{% endfor %}
 																</select>
+																
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="form-group">
 																<label>Zip/Postal Code <span class="star-red">*</span></label>
-																<input type="text" class="form-control">
+																<input type="text" name='zip_code' class="form-control" value="{{ user.customer.address.zip_code }}">
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="form-group">
 																<label>Country <span class="star-red">*</span></label>
-																<select class="select form-control">
-																	<option selected="selected">Select</option>
-																	<option>India</option>
-																	<option>London</option>  
-																	<option>France</option>
-																	<option>USA</option>
+																<select name='country' class="select form-control">
+																	{% for i in country_name %}
+																	<option value="{{ i.name }}" {% if user.customer.address.country == i %}selected{% endif %} >{{i}}</option>
+																	{% endfor %}
 																</select>
 															</div>
 														</div>
