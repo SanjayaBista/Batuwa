@@ -114,14 +114,48 @@ def profiles(request):
     return render(request, 'profiles.html')
 
 def settings(request):
-    form = WebsiteForm()
+    country_name = Country.objects.all()
+    state_name = State.objects.all()
+   
     if request.method == 'POST':
-        form = WebsiteForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('UserAdmin:settings')
+        setting_type = request.POST.get('type')
+        if setting_type == 'website':
+            website_name = request.POST.get('website_name')
+            logo = request.POST.get('logo')
+            favicon = request.POST.get('favicon')
+            if request.user.customer.website:
+                website = Website.objects.get(user=request.user.customer)
+                website.website_name = website_name
+                website.logo = logo
+                website.favicon = favicon
+            else:
+                website = Website(website_name=website_name, logo=logo, favicon=favicon,user=request.user.customer)
+            website.save()
+        elif setting_type == 'address':
+            address1 = request.POST.get('address1')
+            address2 = request.POST.get('address2')
+            city = request.POST.get('city')
+            zip_code = request.POST.get('zip_code')
+            country = request.POST.get('country')
+            print('country',country)
+            country_obj = Country.objects.get(name=country)
+            state = request.POST.get('state')
+            print('state',state)
+            state_obj = State.objects.get(name=state, country_id=country_obj)
+            if request.user.customer.address:
+                address = Address.objects.get(user=request.user.customer)
+                address.address1 = address1
+                address.address2 = address2
+                address.city = city
+                address.zip_code = zip_code
+                address.country = country_obj
+                address.state = state_obj
+            else:
+                address = Address(address1=address1, address2=address2, city=city,zip_code=zip_code, country=country_obj,state=state_obj, user=request.user.customer)
+            address.save()  
     context = {
-        'form':form
+        'country_name':country_name,
+        'state_name':state_name
     }
     return render(request, 'settings.html',context)
 
