@@ -38,8 +38,7 @@ def user_register(request):
 def post_project(request):
     if request.method == 'POST':
         project_form = PostProjectForm(request.POST, request.FILES)
-        if project_form.is_valid():
-                
+        if project_form.is_valid(): 
             project_form.save()
             return redirect('Freelancing:view_project')
         else:
