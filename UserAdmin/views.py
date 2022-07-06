@@ -1,11 +1,18 @@
+from tkinter import SE
+from django.utils import timezone
+from os import system
 from tracemalloc import start
 from turtle import title
 from webbrowser import get
 from django.shortcuts import get_object_or_404, redirect, render
 from requests import request
+
+from Batuwa.settings import TIME_ZONE
 from Freelancing.models import ProjectDetail
-from .forms import AddressForm, WebsiteForm, ProjectForm
-from .models import *
+from .forms import AddressForm, LocalizationForm, WebsiteForm, ProjectForm
+from Freelancing.models import ProjectDetail
+from UserAdmin.models import Country, Website, State, Address, Localization, PaypalPayment, StripePayment, SeoSetting
+import pytz
 # Create your views here.
 def dashboard(request):
     return render(request, 'dashboard.html')
@@ -131,6 +138,7 @@ def settings(request):
             else:
                 website = Website(website_name=website_name, logo=logo, favicon=favicon,user=request.user.customer)
             website.save()
+            
         elif setting_type == 'address':
             address1 = request.POST.get('address1')
             address2 = request.POST.get('address2')
@@ -173,9 +181,74 @@ def settings(request):
 #     return render(request, 'settings.html',context)
 
 def localization(request):
-    return render(request, 'localization.html')
+    if request.method == 'POST':
+        localization_form = LocalizationForm(request.POST)
+        if localization_form.is_valid():
+            localization_form.save()
+            return redirect('UserAdmin:localization')
+      
+    else:
+        localization_form = LocalizationForm()
+    return render(request, 'localization.html',{'localization_form':localization_form })
+
 
 def payment_setting(request):
+    if request.method == 'POST':
+        payment_type = request.POST.get('type')
+        if payment_type == 'paypal':
+            option = request.POST.get('budget')
+            braintree_token_key = request.POST.get('braintree_token_key')
+            braintree_merchant_id = request.POST.get('braintree_merchant_id')
+            braintree_public_key = request.POST.get('braintree_public_key')
+            braintree_private_key = request.POST.get('braintree_private_key')
+            paypal_app_id = request.POST.get('paypal_app_id')
+            paypal_secret_key = request.POST.get('paypal_secret_key')
+            if request.user.customer.paypalpayment:
+                payment = PaypalPayment.objects.get(user=request.user.customer)
+                payment.option = option
+                payment.braintree_token_key = braintree_token_key
+                payment.braintree_merchant_id = braintree_merchant_id
+                payment.braintree_public_key = braintree_public_key
+                payment.braintree_private_key = braintree_private_key
+                payment.paypal_app_id = paypal_app_id 
+                payment.paypal_secret_key = paypal_secret_key
+                 
+            else:
+                payment = PaypalPayment(
+                    option=option,
+                    braintree_token_key=braintree_token_key,
+                    braintree_merchant_id=braintree_merchant_id,
+                    braintree_public_key=braintree_public_key,
+                    braintree_private_key=braintree_private_key,
+                    paypal_app_id=paypal_app_id,
+                    paypal_secret_key=paypal_secret_key,
+                    user=request.user.customer
+                    )
+            payment.save()
+        elif payment_type == 'stripe':
+            option = request.POST.get('budget')
+            gateway_name = request.POST.get('gateway_name')
+            api_key = request.POST.get('api_key')
+            rest_key = request.POST.get('rest_key')
+           
+            if request.user.customer.stripepayment:
+                payment = StripePayment.objects.get(user=request.user.customer)
+                payment.option = option
+                payment.gateway_name = gateway_name
+                payment.api_key = api_key
+                payment.rest_key = rest_key
+                
+                 
+            else:
+                payment = StripePayment(
+                    option=option,
+                    gateway_name=gateway_name,
+                    api_key=api_key,
+                    rest_key=rest_key,
+                    user=request.user.customer
+                    )
+            payment.save()
+                
     return render(request, 'payment_setting.html')
 
 def email_setting(request):
@@ -188,6 +261,23 @@ def social_links(request):
     return render(request, 'social_links.html')
 
 def seo_settings(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        keyword = request.POST.get('keyword')
+        description = request.POST.get('description')
+        if request.user.customer.seosetting:
+            data = SeoSetting.objects.get(user=request.user.customer)
+            data.title = title
+            data.keyword = keyword
+            data.description = description    
+        else:
+            data = SeoSetting(
+                title=title,
+                keyword=keyword,
+                description=description,
+                user=request.user.customer
+                )
+        data.save()
     return render(request, 'seo_settings.html')
 
 def others(request):

@@ -63,3 +63,12 @@ def view_project_detail(request,id):
     return render(request, 'view_project_detail.html', context)
 # class PostProject(CreateView):
 #     pass
+
+def batuwa(request):
+    return render(request, 'batuwas.html')
+
+def task(request):
+    return render(request, 'tasks.html')
+
+def task_detail(request):
+    return render(request, 'task_detail.html')

@@ -65,19 +65,20 @@ Settings
 											<div class="card-header">
 												<h5 class="card-title">SEO Settings</h5>
 											</div>
-											<form>
+											<form action={% url 'UserAdmin:seo_settings' %} method='POST'>
+												{% csrf_token %}
 												<div class="settings-form">
 													<div class="form-group form-placeholder">
 														<label>Meta Title <span class="star-red">*</span></label>
-														<input type="text" class="form-control">
+														<input type="text" name='title' class="form-control" value='{{ user.customer.seosetting.title }}'>
 													</div>
 													<div class="form-group">
 														<label>Meta Keywords <span class="star-red">*</span></label>
-														<input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="Meta Keywords" name="services" value="Lorem,Ipsum" id="services">
+														<input type="text" data-role="tagsinput" class="input-tags form-control" value="{{ user.customer.seosetting.keyword }}" name="keyword" value="Lorem,Ipsum" id="services">
 													</div>
 													<div class="form-group">
 														<label>Meta Description <span class="star-red">*</span></label>
-														<textarea class="form-control"></textarea>
+														<textarea name='description' class="form-control" value="{{ user.customer.seosetting.description }}"></textarea>
 													</div>
 													<div class="form-group mb-0">
 														<div class="settings-btns">

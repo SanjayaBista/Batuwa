@@ -67,42 +67,44 @@ Settings
                                         <label for="status_1" class="checktoggle">checkbox</label>
                                     </div>
                                 </div>
-                                <form>
+                                <form action='{% url 'UserAdmin:payment_setting' %}' method="POST">
+                                    {% csrf_token %}
                                     <div class="settings-form">
                                         <div class="form-group">
                                             <p class="pay-cont">Paypal Option</p>
                                             <label class="custom_radio me-4">
-                                                <input type="radio" name="budget" value="Yes" checked="">
+                                                <input type="radio" name="budget" value="Sandbox" checked="">
                                                 <span class="checkmark"></span> Sandbox
+                                                <input value='paypal' hidden name='type'>
                                             </label>
                                             <label class="custom_radio">
-                                                <input type="radio" name="budget" value="Yes">
+                                                <input type="radio" name="budget" value="Live">
                                                 <span class="checkmark"></span> Live
                                             </label>
                                         </div>
                                         <div class="form-group form-placeholder">
                                             <label>Braintree Tokenization key <span class="star-red">*</span></label>
-                                            <input type="text" class="form-control" placeholder="sandbox_pgjcppvs_pd6gznv7zbrx9hb8">
+                                            <input type="text" name="braintree_token_key" class="form-control" value="{{ user.customer.paypalpayment.braintree_token_key }}" required>
                                         </div>
                                         <div class="form-group form-placeholder">
                                             <label>Braintree Merchant ID <span class="star-red">*</span></label>
-                                            <input type="text" class="form-control" placeholder="pd6gznv7zbrx9hb8">
+                                            <input type="text" name="braintree_merchant_id" class="form-control" value="{{ user.customer.paypalpayment.braintree_merchant_id }}">
                                         </div>
                                         <div class="form-group form-placeholder">
                                             <label>Braintree Public key <span class="star-red">*</span></label>
-                                            <input type="text" class="form-control" placeholder="h8bydrz7gcjkp7d4">
+                                            <input type="text" name="braintree_public_key" class="form-control" value="{{ user.customer.paypalpayment.braintree_public_key }}">
                                         </div>
                                         <div class="form-group form-placeholder">
                                             <label>Braintree Private key <span class="star-red">*</span></label>
-                                            <input type="text" class="form-control" placeholder="sandbox_pgjcppvs_pd6gznv7zbrx9hb8">
+                                            <input type="text" name="braintree_private_key" class="form-control" value="{{ user.customer.paypalpayment.braintree_private_key }}">
                                         </div>
                                         <div class="form-group form-placeholder">
                                             <label>Paypal APP ID <span class="star-red">*</span></label>
-                                            <input type="text" class="form-control" placeholder="pd6gznv7zbrx9hb8">
+                                            <input type="text" name="paypal_app_id" class="form-control" value="{{ user.customer.paypalpayment.paypal_app_id }}">
                                         </div>
                                         <div class="form-group form-placeholder">
                                             <label>Paypal Secret Key <span class="star-red">*</span></label>
-                                            <input type="text" class="form-control" placeholder="h8bydrz7gcjkp7d4">
+                                            <input type="text" name="paypal_secret_key" class="form-control" value="{{ user.customer.paypalpayment.paypal_secret_key }}">
                                         </div>
                                         <div class="form-group mb-0">
                                             <div class="settings-btns">
@@ -125,30 +127,32 @@ Settings
                                         <label for="status_2" class="checktoggle">checkbox</label>
                                     </div>
                                 </div>
-                                <form>
+                                <form action={% url 'UserAdmin:payment_setting' %} method='POST'>
+                                    {% csrf_token %}
                                     <div class="settings-form">
                                         <div class="form-group">
                                             <p class="pay-cont">Stripe Option</p>
                                             <label class="custom_radio me-4">
-                                                <input type="radio" name="budget" value="Yes" checked="">
+                                                <input type="radio" name="budget" value="Sandbox" checked="">
                                                 <span class="checkmark"></span> Sandbox
+                                                <input value='stripe' hidden name='type'>
                                             </label>
                                             <label class="custom_radio">
-                                                <input type="radio" name="budget" value="Yes">
+                                                <input type="radio" name="budget" value="Live">
                                                 <span class="checkmark"></span> Live
                                             </label>
                                         </div>
                                         <div class="form-group form-placeholder">
                                             <label>Gateway Name <span class="star-red">*</span></label>
-                                            <input type="text" class="form-control" placeholder="Stripe">
+                                            <input type="text" name="gateway_name" class="form-control" value="{{ user.customer.stripepayment.gateway_name }}">
                                         </div>
                                         <div class="form-group form-placeholder">
                                             <label>API Key <span class="star-red">*</span></label>
-                                            <input type="text" class="form-control" placeholder="pk_test_AealxxOygZz84AruCGadWvUV00mJQZdLvr">
+                                            <input type="text" name="api_key" class="form-control" value="{{ user.customer.stripepayment.api_key }}">
                                         </div>
                                         <div class="form-group form-placeholder">
                                             <label>Rest Key <span class="star-red">*</span></label>
-                                            <input type="text" class="form-control" placeholder="sk_test_8HwqAWwBd4C4E77bgAO1jUgk00hDlERgn3">
+                                            <input type="text" name="rest_key" class="form-control" value="{{ user.customer.stripepayment.rest_key }}">
                                         </div>
                                         <div class="form-group mb-0">
                                             <div class="settings-btns">

@@ -60,3 +60,14 @@ class AddressForm(forms.ModelForm):
         elif self.instance.pk:
             self.fields['state'].queryset = self.instance.country.state_set.order_by('state')
 
+class LocalizationForm(forms.ModelForm):
+    class Meta:
+        model = Localization
+        fields = '__all__'
+    
+    def __init__(self, *args, **kargs):
+        super(LocalizationForm, self).__init__(*args, **kargs)
+        self.fields['timezone'].widget.attrs.update({'class': 'form-control'})
+        self.fields['date_format'].widget.attrs.update({'class': 'form-control'})
+        self.fields['time_format'].widget.attrs.update({'class': 'form-control'})
+        self.fields['currency_symbol'].widget.attrs.update({'class': 'form-control'})
